@@ -25,18 +25,36 @@ int main() {
 	sort(students.begin(), students.end(), compare);
 
 	// write the names and grades
-	for (vector<Student_info>::size_type i = 0; i < students.size(); i++) {
+	//for (vector<Student_info>::size_type i = 0; i < students.size(); i++) {
 		// write the name, padded on the right to maxlen + 1
-		cout << students[i].name << string(maxlen + 1 - students[i].name.size(), ' ');
+	//	cout << students[i].name << string(maxlen + 1 - students[i].name.size(), ' ');
+
+        // ignore the exception first
+    //    try {
+    //        double final_grade = grade(students[i]);
+    //        streamsize prec = cout.precision();
+    //        cout << setprecision(3) << final_grade << setprecision(prec);
+    //    } catch (domain_error e) {
+    //    	cout << e.what() << endl;
+    //    	cout << "error parse the grade of: " << students[i].name;
+    //    }
+        
+    //    cout << endl;		
+	//}
+
+		/*using iterator*/	
+	for (vector<Student_info>::const_iterator iter = students.begin(); 
+	        iter != students.end(); iter++) {
+		cout << (*iter).name << string(maxlen + 1 - (*iter).name.size(), ' ');
 
         // ignore the exception first
         try {
-            double final_grade = grade(students[i]);
+            double final_grade = grade(*iter);
             streamsize prec = cout.precision();
             cout << setprecision(3) << final_grade << setprecision(prec);
         } catch (domain_error e) {
         	cout << e.what() << endl;
-        	cout << "error parse the grade of: " << students[i].name;
+        	cout << "error parse the grade of: " << (*iter).name;
         }
         
         cout << endl;		
