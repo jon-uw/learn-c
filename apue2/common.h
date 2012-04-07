@@ -60,7 +60,7 @@ void err_sys(const char *fmt, ...)
 
 void err_ret(const char *fmt, ...)
 {
-    printf("in err_ret\n");
+    //printf("in err_ret\n");
     va_list ap;
     va_start(ap, fmt);
     handle_error(1, errno, fmt, ap);
@@ -87,6 +87,7 @@ set_fl(int fd, int flags) /* flags are file status flags to turn on */
         }
 }
 
+#if defined(CLR_FL)
 void
 clr_fl(int fd, int flags)
 {
@@ -106,6 +107,8 @@ clr_fl(int fd, int flags)
     }
     return;
 }
+#endif
+
 #endif
 
 
